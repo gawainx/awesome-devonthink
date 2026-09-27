@@ -41,13 +41,25 @@ using-dt-skills/
 
 以下命令可发现并安装这三个技能骨架；具体业务规范在各自的 `SKILL.md` 中维护。
 
-从 GitHub 的技能集合目录安装到 Codex 用户范围：
+默认采用安装器的 Symlink 方式：用户从发布来源安装一份技能到公共目录，各 runtime 直接读取或通过符号链接使用这份副本。安装方式由 skills CLI 控制，技能包不提供自定义安装逻辑。
+
+从 GitHub 的技能集合目录安装到用户范围，由用户选择 runtime：
 
 ```sh
-npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --agent codex --global
+npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global
 ```
 
-使用明确的子目录 URL，将发现范围限定在本技能集合。安装器负责列出技能并提供选择；不使用 `--all` 将技能安装到其他 agent。
+使用明确的子目录 URL，将发现范围限定在本技能集合。安装器负责选择技能和 runtime；出现安装方式选项时，使用 `Symlink (Recommended)`。不传 `--copy`，也不使用 `--all` 自动选择所有 runtime。
+
+上述 `master` 地址指向开发分支。正式发布时，用已发布的 Git tag 替换 URL 中的 `master`，使用户安装对应版本的技能内容。当前骨架尚未创建发布 tag。
+
+例如，用户选择 Codex 和 Claude Code 后，可以使用以下非交互安装命令；runtime 名称是示例，不是技能包的固定要求：
+
+```sh
+npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global --agent codex claude-code --skill '*' --yes
+```
+
+`skills@1.7.0` 在多个不同目标目录、未传 `--copy` 且使用 `--yes` 时默认采用 Symlink。只有一个目标目录时，安装器自动采用 Copy；对于 Codex，目标就是公共 `.agents/skills` 目录，不会因此生成多份 runtime 专属副本。安装器没有供技能包声明强制 Symlink 的配置，也没有公开的 `--symlink` 参数。
 
 在本仓库根目录，列出本地技能：
 
@@ -55,19 +67,19 @@ npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-d
 npx skills add ./using-dt-skills --list
 ```
 
-将本地编辑的技能安装到 Codex 用户范围：
+维护者也可以从本地目录安装，使用相同的 runtime 和安装方式选择：
 
 ```sh
-npx skills add ./using-dt-skills --agent codex --global
+npx skills add ./using-dt-skills --global
 ```
 
 如只需其中一个技能，在命令末尾加 `--skill <skill-name>`。如需项目范围安装，从目标项目目录执行命令并省略 `--global`；本地源路径应指向本仓库的 `using-dt-skills` 目录。
 
 ## 编辑与再次安装
 
-直接编辑本仓库中的技能文件即可维护源码，无需编译。再次运行本地安装命令，将编辑后的内容安装到运行环境。
+维护者直接编辑本仓库中的技能文件，无需编译；提交内容并发布 Git tag 后，用户通过对应发布地址安装。
 
-`skills` 默认安装方式中的符号链接连接的是安装后的公共副本和 agent 目录，并不表示安装目标链接到本仓库源码。因此，修改仓库文件后需要再次安装才能更新已安装副本。
+Symlink 连接的是安装后的公共副本和 runtime 目录。修改这份公共副本时，共用它的 runtime 会读取同一份文件。
 
 已安装的文件也可以直接编辑。但安装器再次安装时会重建目标技能目录，不能将安装目录的改动视为会被自动保留或合并。需要长期保留的修改应同步回自己维护的源文件，再从该来源安装。这里沿用安装器的既有行为，不增加自动更新、覆盖层或自定义合并逻辑。
 
