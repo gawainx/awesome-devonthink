@@ -10,10 +10,6 @@
 | research-report | 编写、修订和保存调研文档与报告 |
 | project-documents | 创建、修订和保存需求澄清、设计文档与开发计划 |
 
-## 使用前提
-
-安装需要 Node.js 和 npm。使用技能前，请在所用的 AI 助手中连接可用的 DEVONthink MCP。
-
 ## 安装
 
 通过 [skills CLI](https://github.com/vercel-labs/skills) 安装：

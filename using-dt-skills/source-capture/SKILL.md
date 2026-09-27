@@ -5,7 +5,7 @@ description: 将已有的 PDF 文件或网页资料保存到 DEVONthink。用户
 
 # 原始资料
 
-负责已有 PDF 文件和网页资料的保存。通过当前环境提供的 DEVONthink MCP 执行操作，具体参数以工具接口为准。
+负责已有 PDF 文件和网页资料的保存。通过当前环境提供的 DEVONthink MCP 执行操作，你需要根据用户所在环境的DEVONthink MCP版本和具体接口来完成MCP调用和数据保存动作。
 
 ## 内容规范
 
