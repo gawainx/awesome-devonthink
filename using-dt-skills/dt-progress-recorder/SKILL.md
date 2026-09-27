@@ -31,13 +31,12 @@ description: 完成需求开发并在用户验收通过后，在DEVONthink中记
 
 ## DEVONthink 写入来源守则
 
-Agent 需要从如下来源来获取写入文件。如果如下所有来源都没有提供，则停下并询问用户。如果按照优先级检查发现其中一个来源已经有提供，则无需继续遍历，直接使用该来源完成写入。
+Agent 需要从如下来源来获取写入文件。仅使用明确指定为当前项目进度记录文件或项目 group 的来源；其他文档链接不作为写入目标。如果如下所有来源都没有提供，则停下并询问用户。如果按照优先级检查发现其中一个来源已经有提供，则无需继续遍历，直接使用该来源完成写入。
 
 以下来源严格按照优先级从高到低，Agent 必须按照优先级完成遍历：
 
 1. 用户Prompt中直接提供的有效 DEVONthink URL 来源
-2. 当前会话历史中提及的有效来源
-3. 项目目录的 `AGENTS.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-4. 项目目录的 `AGENTS.md`
-5. 系统提供的 `~/.codex/AGENTS.*.md` 文档
-6. 系统全局 `~/.codex/AGENTS.md` 文档
+2. 项目目录的 `AGENTS.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
+3. 项目目录的 `AGENTS.md` 
+4. 系统提供的 `~/.codex/AGENTS.*.md` 文档
+5. 系统全局 `~/.codex/AGENTS.md` 文档
