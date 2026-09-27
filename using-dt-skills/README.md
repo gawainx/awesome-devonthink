@@ -4,15 +4,26 @@
 
 ## 目录结构
 
-每个技能使用一个独立目录，目录内的 `SKILL.md` 是入口。以下为结构示意，`<skill-name>` 由实际技能确定：
+每个技能使用一个独立目录，目录内的 `SKILL.md` 是入口：
 
 ```text
 using-dt-skills/
 ├── README.md
-└── <skill-name>/
-    ├── SKILL.md
-    └── references/       # 需要支持文件时再添加
+├── source-capture/
+│   └── SKILL.md
+├── research-report/
+│   └── SKILL.md
+└── project-documents/
+    └── SKILL.md
 ```
+
+| 技能入口 | 职责 |
+| --- | --- |
+| [source-capture](source-capture/SKILL.md) | 保存原始 PDF 和网页资料 |
+| [research-report](research-report/SKILL.md) | 编写、修订和保存调研文档与报告 |
+| [project-documents](project-documents/SKILL.md) | 创建、修订和保存需求澄清、设计文档与开发计划 |
+
+三个入口目前为可安装的骨架，正文预留了内容规范、执行流程和产物要求的编辑位置。章节可直接修改或重组；需要支持文件时，再在对应技能目录中添加 `references/` 等目录。
 
 `SKILL.md` 使用标准 YAML frontmatter，至少包含 `name` 和 `description`，正文使用 Markdown。`name` 与目录名一致，使用小写字母、数字和连字符。`description` 描述技能的用途和触发条件。格式依据 [Agent Skills specification](https://agentskills.io/specification)。
 
@@ -28,7 +39,7 @@ using-dt-skills/
 
 ## 安装
 
-以下命令在目录中存在有效技能后使用；当前技术设计不创建占位技能。
+以下命令可发现并安装这三个技能骨架；具体业务规范在各自的 `SKILL.md` 中维护。
 
 从 GitHub 的技能集合目录安装到 Codex 用户范围：
 
