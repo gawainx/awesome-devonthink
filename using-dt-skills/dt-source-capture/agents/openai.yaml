@@ -1,0 +1,4 @@
+interface:
+  display_name: "DEVONthink Source Capture"
+  short_description: "Save requested PDFs and full HTML pages to DEVONthink"
+  default_prompt: "Use $dt-source-capture to save the original PDFs and web pages I requested to DEVONthink."

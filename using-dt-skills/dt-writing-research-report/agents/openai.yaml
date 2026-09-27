@@ -1,0 +1,4 @@
+interface:
+  display_name: "DEVONthink Research Report Writing"
+  short_description: "Research, write, and save reports in DEVONthink"
+  default_prompt: "Use $dt-writing-research-report to research the requested topic, review the outline with me, and write the report in DEVONthink."

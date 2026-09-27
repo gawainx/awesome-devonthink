@@ -1,0 +1,4 @@
+interface:
+  display_name: "DEVONthink Project Document Writing"
+  short_description: "Write and revise project documents in DEVONthink"
+  default_prompt: "Use $dt-writing-project-documents to create or revise the requested project documents in DEVONthink."

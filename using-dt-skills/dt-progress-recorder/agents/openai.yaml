@@ -1,0 +1,4 @@
+interface:
+  display_name: "DEVONthink Progress Recorder"
+  short_description: "Record accepted project outcomes in DEVONthink"
+  default_prompt: "Use $dt-progress-recorder to record the completed work and key decisions in DEVONthink after user acceptance."
