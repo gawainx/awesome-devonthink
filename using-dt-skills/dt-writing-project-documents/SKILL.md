@@ -1,5 +1,5 @@
 ---
-name: dt-project-documents-writing
+name: dt-writing-project-documents
 description: 创建或修订需要保存到 DEVONthink 的项目流程文档。用户要求编写或更新需求澄清、设计文档或开发计划时使用。
 ---
 

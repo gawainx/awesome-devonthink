@@ -8,7 +8,7 @@
 | --- | --- |
 | source-capture | 保存已有 PDF 文件和网页资料 |
 | research-report | 编写、修订和保存调研文档与报告 |
-| project-documents | 创建、修订和保存需求澄清、设计文档与开发计划 |
+| dt-writing-project-documents | 创建、修订和保存需求澄清、设计文档与开发计划 |
 
 ## 安装
 
