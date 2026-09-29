@@ -29,6 +29,24 @@ npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-d
 
 如需仅在某个项目中使用，在该项目目录执行安装命令并省略 `--global`。
 
+### 从 GitHub 更新已安装技能
+
+技能修改推送到 GitHub 后，使用 skills CLI 从安装时记录的来源更新本机副本。例如，更新全局安装的项目文档写作技能：
+
+```sh
+npx skills update dt-writing-project-documents --global
+```
+
+替换技能名称可更新其他已安装技能。如需更新全部全局安装的技能（包括来自其他仓库的技能）：
+
+```sh
+npx skills update --global
+```
+
+对于项目内安装的技能，在对应项目目录执行命令，并将 `--global` 替换为 `--project`。这些命令读取 GitHub 上的版本；本地尚未推送的修改不会同步到已安装副本。
+
+Codex 会自动检测技能变化；如果更新没有生效，重启 Codex。参见 [Codex 技能文档](https://learn.chatgpt.com/docs/build-skills)。
+
 ## 使用教程
 
 - [在 DEVONthink 中显示 Markdown 数学公式](tutorials/markdown-math.md)：开启 MathJax，或配置自定义 KaTeX 预览。
