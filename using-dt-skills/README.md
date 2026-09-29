@@ -8,7 +8,7 @@
 | --- | --- |
 | dt-source-capture | 按用户要求保存 PDF 原件和完整 HTML 网页，不自动归档普通调研中引用的资料 |
 | dt-writing-research-report | 开展调研、审核报告大纲，编写、修订和保存调研报告 |
-| dt-writing-project-documents | 创建、修订和保存需求澄清、设计文档与开发计划 |
+| dt-writing-project-documents | 创建、修订和保存需求澄清、设计文档、开发计划、复盘与实验结果记录；Markdown 优先，实验数据呈现或用户明确要求时使用 HTML |
 | dt-progress-recorder | 用户验收后，向项目进度文件追加完成结果与关键决策 |
 
 ## 安装
