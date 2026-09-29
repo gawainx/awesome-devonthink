@@ -31,11 +31,13 @@ npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-d
 
 ### 从 GitHub 更新已安装技能
 
-技能修改推送到 GitHub 后，执行以下命令，一次更新本仓库已全局安装的四个技能：
+技能修改推送到 GitHub 后，重新执行以下命令，并按提示选择 AI 助手，即可更新本仓库的整套技能：
 
 ```sh
-npx skills update dt-source-capture dt-writing-research-report dt-writing-project-documents dt-progress-recorder --global
+npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global --skill '*'
 ```
+
+`--skill '*'` 选择该目录下的全部技能，覆盖更新已安装的技能，并安装新增技能，无需逐个列出技能名称。
 
 ## 使用教程
 
