@@ -13,31 +13,23 @@
 | dt-writing-project-documents | 创建、修订和保存需求澄清、设计文档、开发计划、复盘与实验结果记录；Markdown 优先，实验数据呈现或用户明确要求时使用 HTML |
 | dt-progress-recorder | 用户验收后，向项目进度文件追加完成结果与关键决策 |
 
-通过 [skills CLI](https://github.com/vercel-labs/skills) 全局安装，按提示选择技能和 AI 助手：
+### 安装与更新
 
-```sh
-npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global
-```
+通过 [skills CLI](https://github.com/vercel-labs/skills) 从 GitHub 安装技能；已安装时，重复执行同一命令即可更新。
 
-出现安装方式选项时，选择 **Symlink (Recommended)**，让多个助手共用一份技能副本。
-
-例如，仅为 Codex 安装项目文档写作技能：
-
-```sh
-npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global --skill dt-writing-project-documents --agent codex --yes
-```
-
-如需仅在某个项目中使用，在该项目目录执行安装命令并省略 `--global`。
-
-### 从 GitHub 更新已安装技能
-
-技能修改推送到 GitHub 后，重新执行以下命令，并按提示选择 AI 助手，即可更新本仓库的整套技能：
+安装或更新全套技能：
 
 ```sh
 npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global --skill '*'
 ```
 
-`--skill '*'` 选择该目录下的全部技能，覆盖更新已安装的技能，并安装新增技能，无需逐个列出技能名称。
+安装或更新单个技能（以项目文档写作技能为例）：
+
+```sh
+npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global --skill dt-writing-project-documents
+```
+
+按提示选择 AI 助手；出现安装方式选项时，选择 **Symlink (Recommended)**，让多个助手共用一份技能副本。
 
 ## 使用教程
 
