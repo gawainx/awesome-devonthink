@@ -23,7 +23,7 @@
 npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global --skill '*'
 ```
 
-安装或更新单个技能（以项目文档写作技能为例）：
+安装或更新单个技能：
 
 ```sh
 npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global --skill dt-writing-project-documents
