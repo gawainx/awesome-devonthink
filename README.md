@@ -1,40 +1,55 @@
 # awesome-devonthink
 
-本项目记录和维护 DEVONthink 的使用指南，包括脚本和适合agent使用的skills
+English | [简体中文](README.zh-CN.md)
 
-## Using DEVONthink Skill set [using-dt-skills](using-dt-skills)
+This project maintains DEVONthink usage guides, scripts, and skills for AI agents.
 
-用于在 DEVONthink 中收集原始资料、编写调研报告与项目文档、记录项目进度的 Agent Skills。
+## DEVONthink Skill Set [using-dt-skills](using-dt-skills)
 
-| 技能 | 用途 |
+Agent skills for collecting source materials, writing research reports and project documents, and recording project progress in DEVONthink.
+
+| Skill | Purpose |
 | --- | --- |
-| dt-source-capture | 按用户要求保存 PDF 原件和完整 HTML 网页，不自动归档普通调研中引用的资料 |
-| dt-writing-research-report | 开展调研、审核报告大纲，编写、修订和保存调研报告 |
-| dt-writing-project-documents | 创建、修订和保存需求澄清、设计文档、开发计划、复盘与实验结果记录；Markdown 优先，实验数据呈现或用户明确要求时使用 HTML |
-| dt-progress-recorder | 用户验收后，向项目进度文件追加完成结果与关键决策 |
+| dt-source-capture | Save original PDFs and complete HTML web pages at the user's request; does not automatically archive sources cited during routine research |
+| dt-writing-research-report | Conduct research, review report outlines, and write, revise, and save research reports |
+| dt-writing-project-documents | Create, revise, and save requirements clarifications, design documents, development plans, retrospectives, and experiment records; prefer Markdown, using HTML for presenting experimental data or when explicitly requested |
+| dt-progress-recorder | Append completed results and key decisions to the project's progress file after user acceptance |
 
-### 安装与更新
+### Installation and Updates
 
-通过 [skills CLI](https://github.com/vercel-labs/skills) 从 GitHub 安装指定版本的技能，以下以 `v1.0.0` 为例。升级时，将 URL 中的版本号替换为目标版本后重新执行；重复使用同一版本号会保持该版本。
+Use the [skills CLI](https://github.com/vercel-labs/skills) to install a specific version from GitHub. The examples below use `v1.0.0`. To upgrade, replace the version in the URL with the target version and run the command again. Reusing the same version keeps that version installed.
 
-安装或更新全套技能：
+Install or update all skills:
 
 ```sh
 npx skills add https://github.com/gawainx/awesome-devonthink/tree/v1.0.0/using-dt-skills --global --skill '*'
 ```
 
-安装或更新单个技能：
+Install or update a single skill:
 
 ```sh
 npx skills add https://github.com/gawainx/awesome-devonthink/tree/v1.0.0/using-dt-skills --global --skill dt-writing-project-documents
 ```
 
-按提示选择 AI 助手；出现安装方式选项时，选择 **Symlink (Recommended)**，让多个助手共用一份技能副本。
+Select your AI assistants when prompted. When asked for an installation method, choose **Symlink (Recommended)** so multiple assistants can share one copy of the skills.
 
-## 使用教程
+### Using the Skills
 
-- [在 DEVONthink 中显示 Markdown 数学公式](tutorials/markdown-math.md)：开启 MathJax，或配置自定义 KaTeX 预览。
+DEVONthink MCP supports reading, writing, and modifying knowledge base content. To use this repository's skills, specify your project's group URL in the repository you are working on. The agent can then read it automatically when invoking a skill.
 
-## 扩展脚本
+Sources are checked in the following order, from highest to lowest priority:
 
-- [KaTeX 支持脚本](extended-scripts/katex-support/devonthink-katex.js)：为 Markdown 预览加载 KaTeX。
+1. A valid DEVONthink URL provided directly in the user's prompt
+2. A valid source mentioned earlier in the current conversation
+3. `AGENTS.*.md` files in the project directory, such as `AGENTS.env.md` or `AGENTS.local.md`
+4. `AGENTS.md` in the project directory
+5. System-provided `~/.codex/AGENTS.*.md` files
+6. The global `~/.codex/AGENTS.md` file
+
+A complete knowledge base should be searched and consulted as well as used for storage. We recommend adding the following instruction to your global AGENTS.md file:
+
+> Treat the DEVONthink knowledge base, project source code, and online resources as regular information sources, and proactively retrieve relevant content for the task. When working on an existing project's requirements, design, or past decisions, first read the relevant knowledge base records, then form your conclusions using both the current source code and external sources.
+
+## Appearance Customization Scripts
+
+- [KaTeX support script](extended-scripts/katex-support/devonthink-katex.js): Load KaTeX for Markdown previews. See [Displaying Markdown Math in DEVONthink](tutorials/markdown-math.md) for instructions (in Simplified Chinese).
