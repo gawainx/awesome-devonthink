@@ -1,0 +1,68 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use IPC::Open2;
+my $pattern = qr/x-devonthink-item:\/\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
+sub reject { die "Git gate: complete DEVONthink item link detected; remove it before committing or pushing.\n"; }
+sub git_output {
+    open my $fh, '-|', 'git', @_ or die "Git gate: cannot launch Git\n";
+    local $/; my $out = <$fh> // '';
+    close $fh or die "Git gate: Git inspection failed\n";
+    return $out;
+}
+sub inspect_stream {
+    my ($fh, $size) = @_;
+    my $tail = '';
+    while ($size > 0) {
+        my $n = read($fh, my $chunk, $size > 65536 ? 65536 : $size);
+        defined($n) && $n > 0 or die "Git gate: incomplete object read\n";
+        my $text = $tail . $chunk;
+        reject() if $text =~ $pattern;
+        $tail = substr($text, -128);
+        $size -= $n;
+    }
+}
+my ($mode, @args) = @ARGV;
+my %objects;
+if ($mode eq 'index') {
+    for my $entry (split /\0/, git_output('ls-files', '--stage', '-z')) {
+        $entry =~ /\A(\d+) ([0-9a-f]+) (\d)\t(.*)\z/s or die "Git gate: invalid index entry\n";
+        my ($perm, $oid, $stage, $path) = ($1, $2, $3, $4);
+        reject() if $path =~ $pattern;
+        $stage == 0 or die "Git gate: unresolved index\n";
+        next if $perm eq '160000';
+        $objects{$oid} = 1;
+    }
+    if (@args && -f $args[0]) {
+        open my $fh, '<:raw', $args[0] or die "Git gate: cannot read commit message\n";
+        inspect_stream($fh, -s $fh); close $fh;
+    }
+} elsif ($mode eq 'push') {
+    while (<STDIN>) {
+        my ($local_ref, $local_oid, $remote_ref, $remote_oid) = split;
+        defined($remote_oid) && $local_oid =~ /\A[0-9a-f]+\z/ && $remote_oid =~ /\A[0-9a-f]+\z/ or die "Git gate: invalid push input\n";
+        next if $local_oid =~ /\A0+\z/;
+        my @range = ($local_oid);
+        if ($remote_oid !~ /\A0+\z/) {
+            system('git', 'cat-file', '-e', $remote_oid) == 0 and push @range, '^'.$remote_oid;
+        }
+        for my $line (split /\n/, git_output('rev-list', '--objects', '--no-object-names', @range, '--')) {
+            $line =~ /\A[0-9a-f]+\z/ or die "Git gate: invalid object id\n";
+            $objects{$line} = 1;
+        }
+    }
+} else { die "Git gate: unsupported mode\n"; }
+if (%objects) {
+    my $pid = open2(my $reader, my $writer, 'git', 'cat-file', '--batch');
+    binmode $reader; binmode $writer;
+    for my $oid (sort keys %objects) {
+        print {$writer} "$oid\n" or die "Git gate: object request failed\n";
+        my $header = <$reader> // '';
+        $header =~ /\A[0-9a-f]+ (?:blob|tree|commit|tag) (\d+)\n\z/ or die "Git gate: unavailable object\n";
+        inspect_stream($reader, $1);
+        my $separator; read($reader, $separator, 1) == 1 && $separator eq "\n" or die "Git gate: invalid object boundary\n";
+    }
+    close $writer; close $reader;
+    waitpid($pid, 0); $? == 0 or die "Git gate: object reader failed\n";
+}
+exit 0;

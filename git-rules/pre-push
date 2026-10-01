@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+hook_dir=$(dirname "$0")
+input=$(mktemp "${TMPDIR:-/tmp}/git-item-link-push.XXXXXX")
+trap 'rm -f "$input"' EXIT HUP INT TERM
+cat > "$input"
+"$hook_dir/item-link-guard" push < "$input"
+"$hook_dir/pre-push.before-item-link-guard" "$@" < "$input"
