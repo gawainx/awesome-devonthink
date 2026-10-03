@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit DEVONthink URL Leaks"
+  short_description: "Locate and clean DEVONthink URL leaks in Git history"
+  default_prompt: "Use $audit-devonthink-url-leaks to audit this repository for DEVONthink item URL leaks and identify the affected files, commits, branches, and tags."
