@@ -17,18 +17,18 @@
 
 ### 安装与更新
 
-通过 [skills CLI](https://github.com/vercel-labs/skills) 从 GitHub 安装指定版本的技能，以下以 `v1.0.0` 为例。升级时，将 URL 中的版本号替换为目标版本后重新执行；重复使用同一版本号会保持该版本。
+通过 [skills CLI](https://github.com/vercel-labs/skills) 从 GitHub 安装指定版本的技能，以下以 `v1.1.0` 为例。升级时，将 URL 中的版本号替换为目标版本后重新执行；重复使用同一版本号会保持该版本。
 
 安装或更新全套技能：
 
 ```sh
-npx skills add https://github.com/gawainx/awesome-devonthink/tree/v1.0.0/using-dt-skills --global --skill '*'
+npx skills add https://github.com/gawainx/awesome-devonthink/tree/v1.1.0/using-dt-skills --global --skill '*'
 ```
 
 安装或更新单个技能：
 
 ```sh
-npx skills add https://github.com/gawainx/awesome-devonthink/tree/v1.0.0/using-dt-skills --global --skill dt-writing-project-documents
+npx skills add https://github.com/gawainx/awesome-devonthink/tree/v1.1.0/using-dt-skills --global --skill dt-writing-project-documents
 ```
 
 按提示选择 AI 助手；出现安装方式选项时，选择 **Symlink (Recommended)**，让多个助手共用一份技能副本。
