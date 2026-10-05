@@ -137,7 +137,7 @@ body {
   color: var(--fgColor-default);
   background-color: var(--bgColor-default);
   font-family: var(--fontStack-sansSerif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji");
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   word-wrap: break-word;
 }
@@ -217,12 +217,12 @@ body mark {
 }
 
 body small {
-  font-size: 90%;
+  font-size: 18px;
 }
 
 body sub,
 body sup {
-  font-size: 75%;
+  font-size: 18px;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
@@ -247,7 +247,7 @@ body kbd,
 body pre,
 body samp {
   font-family: monospace;
-  font-size: 1em;
+  font-size: 18px;
 }
 
 body figure {
@@ -271,7 +271,7 @@ body input {
   margin: 0;
   overflow: visible;
   font-family: inherit;
-  font-size: inherit;
+  font-size: 18px;
   line-height: inherit;
 }
 
@@ -386,8 +386,8 @@ body input[type=checkbox]:focus-visible {
 body kbd {
   display: inline-block;
   padding: var(--base-size-4);
-  font: 11px var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
-  line-height: 10px;
+  font: 18px var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
+  line-height: 1.5;
   color: var(--fgColor-default);
   vertical-align: middle;
   background-color: var(--bgColor-muted);
@@ -476,14 +476,14 @@ body tt,
 body code,
 body samp {
   font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
-  font-size: 12px;
+  font-size: 18px;
 }
 
 body pre {
   margin-top: 0;
   margin-bottom: 0;
   font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
-  font-size: 12px;
+  font-size: 18px;
   word-wrap: normal;
 }
 
@@ -685,7 +685,7 @@ body dl {
 body dl dt {
   padding: 0;
   margin-top: var(--base-size-16);
-  font-size: 1em;
+  font-size: 18px;
   font-style: italic;
   font-weight: var(--base-text-weight-semibold, 600);
 }
@@ -828,7 +828,7 @@ body code,
 body tt {
   padding: .2em .4em;
   margin: 0;
-  font-size: 85%;
+  font-size: 18px;
   white-space: break-spaces;
   background-color: var(--bgColor-neutral-muted);
   border-radius: 6px;
@@ -844,11 +844,11 @@ body del code {
 }
 
 body samp {
-  font-size: 85%;
+  font-size: 18px;
 }
 
 body pre code {
-  font-size: 100%;
+  font-size: 18px;
 }
 
 body pre>code {
@@ -873,7 +873,7 @@ body .highlight pre,
 body pre {
   padding: var(--base-size-16);
   overflow: auto;
-  font-size: 85%;
+  font-size: 18px;
   line-height: 1.45;
   color: var(--fgColor-default);
   background-color: var(--bgColor-muted);
@@ -896,7 +896,7 @@ body .csv-data td,
 body .csv-data th {
   padding: 5px;
   overflow: hidden;
-  font-size: 12px;
+  font-size: 18px;
   line-height: 1;
   text-align: left;
   white-space: nowrap;
@@ -928,7 +928,7 @@ body [data-footnote-ref]::after {
 }
 
 body .footnotes {
-  font-size: 12px;
+  font-size: 18px;
   color: var(--fgColor-muted);
   border-top: 1px solid var(--borderColor-default);
 }
@@ -1105,7 +1105,7 @@ body g-emoji {
   display: inline-block;
   min-width: 1ch;
   font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  font-size: 1em;
+  font-size: 18px;
   font-style: normal !important;
   font-weight: var(--base-text-weight-normal, 400);
   line-height: 1;

@@ -32,7 +32,7 @@ SOFTWARE.
 /*Main body*/
 body {
   font-family:      Helvetica, arial, sans-serif;
-  font-size:        14px;
+  font-size:        18px;
   line-height:      1.4em;
   background-color: white;
   padding-top:      10px;
@@ -163,7 +163,7 @@ ul ul,ul ol,ol ol,ol ul{
 /*Footnotes*/
 a[href^="#fn:"]:after{
     content:        ')';
-    font-size:      0.83em;
+    font-size:      18px;
     vertical-align: super;
     line-height:    0;
 }
@@ -211,7 +211,7 @@ li:target {
     border:         0px solid #aaa;
     border-radius:  10px;
     display:        table;
-    font-size:      95%;
+    font-size:      18px;
     margin-bottom:  1em;
     padding-left:   2px;
     padding-top:    2px;
@@ -309,7 +309,7 @@ input[type="checkbox"]:checked::after {
 dl {
   padding:            0; }
   dl dt {
-    font-size:        14px;
+    font-size:        18px;
     font-weight:      bold;
     font-style:       italic;
     padding:          0;
@@ -358,13 +358,13 @@ table {
       /* border-left: 0.5px solid #cccccc;
       border-right: 0.5px solid #cccccc; */
       background-color: #eefbff;
-      font-size:      14px;
+      font-size:      18px;
       margin:         0;
       padding:        0.4em 0.35em 0.4em 0.35em; }
     table tr td {
       /* border: 1px solid #cccccc; */
       margin:         0;
-       font-size:     14px;
+       font-size:     18px;
        padding:       5px 5px; }
     table tr th :first-child, table tr td :first-child {
       margin-top:     0; }
@@ -479,8 +479,8 @@ pre code {
 .highlight pre {
     background-color:   #f8f8f8;
     border:             1px solid #cccccc;
-    font-size:          13px;
-    line-height:        19px;
+    font-size:          18px;
+    line-height:        1.5;
     overflow:           auto;
     padding:            6px 10px;
     border-radius:      3px;
@@ -491,7 +491,7 @@ pre {
     background-color:   #f8f8f8;
     border:             1px solid #cccccc;
     /*font-size:          13px;*/
-    font-size:          0.90em !important;
+    font-size:          18px !important;
     line-height:        1.6em !important; //19px
     overflow:           auto;
     padding:            6px 10px;
@@ -504,14 +504,14 @@ pre code, pre tt {
 
 /*Superscript text*/
 sup {
-    font-size:          0.83em;
+    font-size:          18px;
     vertical-align:     super;
     line-height:        0;
 }
 
 /*Subscript text*/
 sub {
-    font-size:          0.83em;
+    font-size:          18px;
     vertical-align:     sub;
     line-height:        0;
 }
@@ -520,8 +520,8 @@ sub {
 kbd {
   display:            inline-block;
   padding:            3px 5px;
-  font-size:          11px;
-  line-height:        10px;
+  font-size:          18px;
+  line-height:        1.5;
   color:              #555;
   vertical-align:     middle;
   background-color:   #fcfcfc;

@@ -189,12 +189,12 @@ body mark {
 }
 
 body small {
-  font-size: 90%;
+  font-size: 18px;
 }
 
 body sub,
 body sup {
-  font-size: 75%;
+  font-size: 18px;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
@@ -220,7 +220,7 @@ body kbd,
 body pre,
 body samp {
   font-family: monospace,monospace;
-  font-size: 1em;
+  font-size: 18px;
 }
 
 body figure {
@@ -244,7 +244,7 @@ body input {
   margin: 0;
   overflow: visible;
   font-family: inherit;
-  font-size: inherit;
+  font-size: 18px;
   line-height: inherit;
 }
 
@@ -338,8 +338,8 @@ body details:not([open])>*:not(summary) {
 body kbd {
   display: inline-block;
   padding: 3px 5px;
-  font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
-  line-height: 10px;
+  font: 18px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  line-height: 1.5;
   color: var(--color-fg-default);
   vertical-align: middle;
   background-color: var(--color-canvas-subtle);
@@ -427,14 +427,14 @@ body dd {
 body tt,
 body code {
   font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 body pre {
   margin-top: 0;
   margin-bottom: 0;
   font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
-  font-size: 12px;
+  font-size: 18px;
   word-wrap: normal;
 }
 
@@ -583,7 +583,7 @@ body [data-catalyst] {
 
 body g-emoji {
   font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  font-size: 1em;
+  font-size: 18px;
   font-style: normal !important;
   font-weight: 400;
   line-height: 1;
@@ -752,7 +752,7 @@ body dl {
 body dl dt {
   padding: 0;
   margin-top: 16px;
-  font-size: 1em;
+  font-size: 18px;
   font-style: italic;
   font-weight: 600;
 }
@@ -891,7 +891,7 @@ body code,
 body tt {
   padding: .2em .4em;
   margin: 0;
-  font-size: 85%;
+  font-size: 18px;
   background-color: var(--color-neutral-muted);
   border-radius: 6px;
 }
@@ -906,7 +906,7 @@ body del code {
 }
 
 body pre code {
-  font-size: 100%;
+  font-size: 18px;
 }
 
 body pre>code {
@@ -931,7 +931,7 @@ body .highlight pre,
 body pre {
   padding: 16px;
   overflow: auto;
-  font-size: 85%;
+  font-size: 18px;
   line-height: 1.45;
   background-color: var(--color-canvas-subtle);
   border-radius: 6px;
@@ -954,7 +954,7 @@ body .csv-data td,
 body .csv-data th {
   padding: 5px;
   overflow: hidden;
-  font-size: 12px;
+  font-size: 18px;
   line-height: 1;
   text-align: left;
   white-space: nowrap;
@@ -978,7 +978,7 @@ body .csv-data th {
 }
 
 body .footnotes {
-  font-size: 12px;
+  font-size: 18px;
   color: var(--color-fg-muted);
   border-top: 1px solid var(--color-border-default);
 }
