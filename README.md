@@ -17,19 +17,21 @@ Agent skills for collecting source materials, writing research reports and proje
 
 ### Installation and Updates
 
-Use the [skills CLI](https://github.com/vercel-labs/skills) to install a specific version from GitHub. The examples below use `v1.1.0`. To upgrade, replace the version in the URL with the target version and run the command again. Reusing the same version keeps that version installed.
+Use the [skills CLI](https://github.com/vercel-labs/skills) to install skills from GitHub. The commands below install the latest content from the `master` branch. To update, run the corresponding command again.
 
 Install or update all skills:
 
 ```sh
-npx skills add https://github.com/gawainx/awesome-devonthink/tree/v1.1.0/using-dt-skills --global --skill '*'
+npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global --skill '*'
 ```
 
 Install or update a single skill:
 
 ```sh
-npx skills add https://github.com/gawainx/awesome-devonthink/tree/v1.1.0/using-dt-skills --global --skill dt-writing-project-documents
+npx skills add https://github.com/gawainx/awesome-devonthink/tree/master/using-dt-skills --global --skill dt-writing-project-documents
 ```
+
+To pin a version, replace `master` in the URLs above with a version tag such as `v1.1.0`. To upgrade, replace it with the target version tag and run the command again.
 
 Select your AI assistants when prompted. When asked for an installation method, choose **Symlink (Recommended)** so multiple assistants can share one copy of the skills.
 
