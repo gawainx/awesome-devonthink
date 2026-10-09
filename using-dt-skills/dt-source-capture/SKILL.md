@@ -37,7 +37,7 @@ description: 在用户明确要求保存原始素材（raw）、PDF 文件或网
 
 1. 用户Prompt中直接提供的有效 DEVONthink URL 来源
 2. 当前会话历史中提及的有效来源
-3. 项目目录的 `AGENTS.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-4. 项目目录的 `AGENTS.md`
-5. 系统提供的 `~/.codex/AGENTS.*.md` 文档
-6. 系统全局 `~/.codex/AGENTS.md` 文档
+3. 项目目录的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
+4. 项目目录的 `AGENTS.md` 或 `CLAUDE.md`
+5. 系统提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md` 文档
+6. 系统全局 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md` 文档

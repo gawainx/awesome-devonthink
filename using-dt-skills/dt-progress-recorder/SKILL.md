@@ -42,7 +42,7 @@ Agent 需要从如下来源来获取写入文件。仅使用明确指定为当�
 以下来源严格按照优先级从高到低，Agent 必须按照优先级完成遍历：
 
 1. 用户Prompt中直接提供的有效 DEVONthink URL 来源
-2. 项目目录的 `AGENTS.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-3. 项目目录的 `AGENTS.md` 
-4. 系统提供的 `~/.codex/AGENTS.*.md` 文档
-5. 系统全局 `~/.codex/AGENTS.md` 文档
+2. 项目目录的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
+3. 项目目录的 `AGENTS.md` 或 `CLAUDE.md`
+4. 系统提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md` 文档
+5. 系统全局 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md` 文档

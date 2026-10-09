@@ -43,12 +43,12 @@ Sources are checked in the following order, from highest to lowest priority:
 
 1. A valid DEVONthink URL provided directly in the user's prompt
 2. A valid source mentioned earlier in the current conversation
-3. `AGENTS.*.md` files in the project directory, such as `AGENTS.env.md` or `AGENTS.local.md`
-4. `AGENTS.md` in the project directory
-5. System-provided `~/.codex/AGENTS.*.md` files
-6. The global `~/.codex/AGENTS.md` file
+3. `AGENTS.*.md` or `CLAUDE.*.md` files in the project directory, such as `AGENTS.env.md` or `AGENTS.local.md`
+4. `AGENTS.md` or `CLAUDE.md` in the project directory
+5. System-provided `~/.codex/AGENTS.*.md` or `~/.claude/CLAUDE.*.md` files
+6. The global `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md` file
 
-A complete knowledge base should be searched and consulted as well as used for storage. We recommend adding the following instruction to your global AGENTS.md file:
+A complete knowledge base should be searched and consulted as well as used for storage. We recommend adding the following instruction to your global AGENTS.md (or CLAUDE.md) file:
 
 > Treat the DEVONthink knowledge base, project source code, and online resources as regular information sources, and proactively retrieve relevant content for the task. When working on an existing project's requirements, design, or past decisions, first read the relevant knowledge base records, then form your conclusions using both the current source code and external sources.
 

@@ -29,7 +29,7 @@ Agent 必须清楚意识到，DEVONThink 软件本身支持多媒体内容，同
 
 ### HTML 使用要求
 
-1. 使用 `effective-html` 插件完成 HTML 页面的成稿，充分使用图表提升可读性。禁止为了 HTML 而 HTML，或先写 Markdown 再机械地转换成 HTML。
+1. 使用 `effective-html` 插件完成 HTML 页面的成稿；当前环境未提供该插件时，直接按本节要求编写 HTML，充分使用图表提升可读性。禁止为了 HTML 而 HTML，或先写 Markdown 再机械地转换成 HTML。
 2. HTML 中所有数学公式必须正确渲染。
 3. 交付产物必须为可直接在浏览器打开的单 HTML 文件。
 4. 不为生成 HTML 编写单元测试，不使用 Computer Use 或 Browser Use 做样式验证。调用插件时保留这些限制，不执行插件中的浏览器样式验证流程。
@@ -77,7 +77,7 @@ Agent 需要从如下来源来获取写入group。如果如下所有来源都没
 
 1. 用户Prompt中直接提供的有效 DEVONthink URL 来源
 2. 当前会话历史中提及的有效来源
-3. 项目目录的 `AGENTS.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-4. 项目目录的 `AGENTS.md`
-5. 系统提供的 `~/.codex/AGENTS.*.md` 文档
-6. 系统全局 `~/.codex/AGENTS.md` 文档
+3. 项目目录的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
+4. 项目目录的 `AGENTS.md` 或 `CLAUDE.md`
+5. 系统提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md` 文档
+6. 系统全局 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md` 文档

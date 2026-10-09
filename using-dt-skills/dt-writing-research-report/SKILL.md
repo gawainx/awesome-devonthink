@@ -18,7 +18,7 @@ description: 用户要求形成研究、分析或报告文档时使用本技能�
 5. 交付格式默认使用 markdown。如果用户明确提及其他格式，则必须优先尊重用户的意见
 6. 使用二级标题区分调研报告的不同方面的内容
 7. 调研报告需要合理使用交叉引用，链接DEVONthink数据库的已有信息，并忠实记录调研来源
-8. 如果用户要求保留原始产物，则使用 $dt-source-capture 技能保存原始来源
+8. 如果用户要求保留原始产物，则使用 dt-source-capture 技能保存原始来源
 
 ### 多媒体数据使用
 
@@ -50,7 +50,7 @@ Agent 需要从如下来源来获取写入group或者文件。如果如下所有
 
 1. 用户Prompt中直接提供的有效 DEVONthink URL 来源
 2. 当前会话历史中提及的有效来源
-3. 项目目录的 `AGENTS.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-4. 项目目录的 `AGENTS.md`
-5. 系统提供的 `~/.codex/AGENTS.*.md` 文档
-6. 系统全局 `~/.codex/AGENTS.md` 文档
+3. 项目目录的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
+4. 项目目录的 `AGENTS.md` 或 `CLAUDE.md`
+5. 系统提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md` 文档
+6. 系统全局 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md` 文档

@@ -43,12 +43,12 @@ DEVONThink MCP 支持对知识库内容进行读取、写入、修改等操作�
 
 1. 用户Prompt中直接提供的有效 DEVONthink URL 来源
 2. 当前会话历史中提及的有效来源
-3. 项目目录的 `AGENTS.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-4. 项目目录的 `AGENTS.md`
-5. 系统提供的 `~/.codex/AGENTS.*.md` 文档
-6. 系统全局 `~/.codex/AGENTS.md` 文档
+3. 项目目录的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
+4. 项目目录的 `AGENTS.md` 或 `CLAUDE.md`
+5. 系统提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md` 文档
+6. 系统全局 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md` 文档
 
-一个完整的知识库除了需要储存，还应该被检索和看见。因此，建议把下列指令粘贴到全局 AGENTS.md 文件中：
+一个完整的知识库除了需要储存，还应该被检索和看见。因此，建议把下列指令粘贴到全局 AGENTS.md（或 CLAUDE.md）文件中：
 
 > 将 DEVONthink 知识库、项目源码和互联网资料作为常规信息来源，根据任务主动检索相关内容；涉及已有项目的需求、设计和历史决策时，先读取知识库中的相关记录，并结合当前源码及外部资料作出判断。
 
