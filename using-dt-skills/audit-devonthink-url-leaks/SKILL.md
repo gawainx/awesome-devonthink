@@ -1,51 +1,51 @@
 ---
 name: audit-devonthink-url-leaks
-description: 审查 Git 仓库中的 DEVONthink 条目 URL 泄漏，定位历史文件、提交、分支和标签，清理受影响历史并验证本地及远端结果。适用于链接泄漏排查、历史清理和相关 Git hook 拦截诊断。
+description: Audit a Git repository for leaked DEVONthink item URLs, locate the affected historical files, commits, branches, and tags, clean the affected history, and verify the local and remote results. Use for link-leak investigation, history cleanup, and diagnosing related Git hook rejections.
 ---
 
 # Audit DEVONthink URL Leaks
 
-所有 Git 命令串行执行。使用 CLI、Git 对象接口和托管平台 API 完成操作。
+Run all Git commands serially. Use the CLI, Git object interfaces, and the hosting platform API to perform operations.
 
-## 定位泄漏
+## Locate Leaks
 
-1. 检查工作区、remote、分支和标签。获取远端更新并核对本地差异，记录目标远端每个待更新引用的完整对象 ID。
-2. 分别检查当前已追踪文件、暂存内容及路径、所有分支和标签可达的历史对象。历史检查使用 `git rev-list --objects --all` 枚举对象，再通过 `git cat-file --batch` 读取内容；包含 reflog 的历史可用 `git rev-list --objects --all --reflog` 补充检查。
-3. 使用下列不区分大小写的正则识别完整条目 URL。分块读取时保留至少 128 字节重叠，覆盖块边界。扫描文件、目录、提交和附注标签对象，包含文件名、符号链接目标及二进制原始字节。
+1. Inspect the working tree, remotes, branches, and tags. Fetch remote updates, check local divergence, and record the full object ID of every ref to be updated on the target remote.
+2. Separately inspect currently tracked files, staged content and paths, and historical objects reachable from all branches and tags. For history, enumerate objects with `git rev-list --objects --all`, then read their content via `git cat-file --batch`; history including reflogs can additionally be checked with `git rev-list --objects --all --reflog`.
+3. Use the following case-insensitive regex to identify full item URLs. When reading in chunks, keep at least 128 bytes of overlap to cover chunk boundaries. Scan blob, tree, commit, and annotated tag objects, including file names, symlink targets, and raw binary bytes.
 
 ```regex
 (?i)x-devonthink-item:\/\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}
 ```
 
-4. 对命中对象记录对象 ID、类型、历史路径和文本行号。使用 `git log --all --find-object=<对象ID>` 定位引入与移除该对象的提交，再检查 diff 确认实际变化。检查包含引入提交的分支和标签，并核对各引用当前文件树是否仍有该内容。
-5. 输出定位信息和命中数量。报告、提交信息、测试样例及受 Git 追踪文件中的条目 URL 统一使用占位符。
+4. For each matching object, record its object ID, type, historical path, and text line number. Use `git log --all --find-object=<object-id>` to find the commits that introduced and removed the object, then inspect the diff to confirm the actual change. Check which branches and tags contain the introducing commit, and whether each ref's current tree still contains the content.
+5. Output the location information and match counts. Always use a placeholder for item URLs in reports, commit messages, test samples, and Git-tracked files.
 
-## 诊断 hook 拦截
+## Diagnose Hook Rejections
 
-1. 使用 `git config --show-origin --get-all core.hooksPath` 查找实际 hook 目录；没有配置时检查仓库默认 hooks 目录。读取 `pre-push`、它调用的检查器及串联的其他脚本，确认是否还包含 Git LFS 等操作。
-2. 根据 hook 收到的本地引用、本地对象 ID、远端引用、远端旧对象 ID，还原检查范围。核对更新已有引用时的历史排除条件，以及远端旧 ID 为全零时的扫描范围。分别复现已有分支更新、新分支和新标签创建三种输入。
-3. 分别统计各范围的对象数量和命中对象，并检查命中对象是否已存在于目标远端历史。只读复现时直接调用已确认无写入行为的检查器，不调用包含上传操作的完整 hook。
-4. 输出触发条件、命中位置和调用链。历史清理与推送全程运行原有 hook。
+1. Use `git config --show-origin --get-all core.hooksPath` to find the actual hook directory; if unset, check the repository's default hooks directory. Read `pre-push`, the checker it invokes, and any other chained scripts, and confirm whether it also performs operations such as Git LFS.
+2. Reconstruct the scan range from the local ref, local object ID, remote ref, and remote old object ID the hook receives. Verify the history exclusion condition when updating an existing ref, and the scan range when the remote old ID is all zeros. Reproduce each of three inputs separately: updating an existing branch, creating a new branch, and creating a new tag.
+3. Count objects and matching objects for each range separately, and check whether matching objects already exist in the target remote's history. For read-only reproduction, invoke the checker directly once confirmed it performs no writes; do not invoke the full hook if it includes upload operations.
+4. Output the trigger condition, match locations, and call chain. Keep the original hooks running throughout history cleanup and pushing.
 
-## 清理历史
+## Clean History
 
-1. 在独立临时目录创建隔离副本，包含全部待处理引用；从本地克隆时使用 `--no-local`。记录每个引用的新旧对象 ID 映射，替换规则文件放在仓库外并限制读取权限。
-2. 使用 `git-filter-repo` 的 `--replace-text` 精确替换实际命中的 URL，替换值为 `<DEVONthink 条目链接>`；提交或标签说明命中时同时使用 `--replace-message`。整文件删除使用 `--invert-paths --path`，覆盖该文件曾使用过的全部历史路径。
-3. 将重写范围限制在受影响提交及其后续历史，覆盖所有相关分支和标签。使用 `--refs` 限定范围时，逐一核对是否留下指向旧历史的引用。核查工具生成的 commit map 和 changed refs，保留无关早期提交。
-4. 比较每个新旧提交的文件树和元数据，确认只发生目标文本替换、相关树与父提交 ID 变化。当前文件已修正的仓库，其当前文件树应保持一致。
-5. 扫描重写后全部待推送引用可达的对象，确认无命中。使用原有检查器验证全部待发布历史，包括新标签的完整历史范围。
-6. 使用明确的引用列表和 `--force-with-lease=<引用>:<记录的旧ID>` 推送；远端支持时使用 `--atomic` 一次更新相关分支和标签。新建引用使用空的预期旧值。lease 失败后重新读取远端变化，纳入新增提交并重新清理、验证，再使用更新后的预期旧值推送。
-7. 推送后读取远端引用，逐项确认对象 ID 与验证后的结果一致。
+1. Create an isolated copy in a separate temporary directory containing all refs to be processed; when cloning locally, use `--no-local`. Record the old-to-new object ID mapping for every ref. Keep the replacement rules file outside the repository with restricted read permissions.
+2. Use `git-filter-repo --replace-text` to replace exactly the URLs that actually matched, with the replacement value `<DEVONthink item link>`; when commit or tag messages match, also use `--replace-message`. To remove whole files, use `--invert-paths --path`, covering every historical path the file has ever used.
+3. Limit the rewrite to the affected commits and their descendants, covering all related branches and tags. When using `--refs` to limit scope, verify one by one that no ref is left pointing to old history. Review the commit map and changed refs generated by the tool, and keep unrelated earlier commits intact.
+4. Compare the tree and metadata of every old and new commit to confirm that only the target text replacements and the resulting tree and parent commit ID changes occurred. For repositories whose current files were already fixed, the current tree should remain identical.
+5. Scan all objects reachable from every rewritten ref to be pushed and confirm there are no matches. Validate all history to be published with the original checker, including the full history range of new tags.
+6. Push with an explicit list of refs and `--force-with-lease=<ref>:<recorded-old-id>`; if the remote supports it, use `--atomic` to update related branches and tags in one operation. For newly created refs, use an empty expected old value. If the lease fails, re-read the remote changes, incorporate the new commits, re-clean and re-verify, then push with the updated expected old values.
+7. After pushing, read the remote refs and confirm each object ID matches the verified result.
 
-## 清理本地对象并核查远端
+## Clean Local Objects and Verify the Remote
 
-1. 确认正式工作区没有未保存修改后，同步清理后的远端历史。检查旧分支、标签、远端跟踪引用、stash 和其他保留引用，定位仍指向旧对象的来源；含未合入工作的引用需要先迁移其改动。
-2. 在仓库无并发写入时，移除旧引用、过期相关 reflog，再执行垃圾回收。使用 `git cat-file --batch-all-objects --batch-check` 枚举全部实际存储对象并扫描，检查已知旧敏感对象是否仍可读取。
-3. 删除本次操作产生的含敏感内容的隔离副本和替换规则文件。检查其他克隆、旧版本安装及发布附件；将需要保留的工作迁移到清理后历史，更新含泄漏内容的副本和附件。
-4. 通过托管平台 API 核查 fork、PR 引用，以及旧提交或文件对象 ID 的可访问性；响应检查只输出状态与对象 ID，不回显原文。
+1. After confirming the main working tree has no unsaved changes, sync the cleaned remote history. Check old branches, tags, remote-tracking refs, stashes, and other retained refs to find any source still pointing to old objects; migrate unmerged work out of such refs first.
+2. With no concurrent writes to the repository, remove old refs, expire the related reflogs, then run garbage collection. Enumerate all actually stored objects with `git cat-file --batch-all-objects --batch-check`, scan them, and check whether known old sensitive objects are still readable.
+3. Delete the isolated copies and replacement rules files containing sensitive content that this operation produced. Check other clones, old installations, and release assets; migrate work that must be kept onto the cleaned history, and update copies and assets that contain leaked content.
+4. Use the hosting platform API to check forks, PR refs, and whether old commit or file object IDs are still accessible; when checking responses, output only status and object IDs, never echo the original content.
 
-## 交付结果
+## Deliverables
 
-- 命中文件、历史行号、引入与移除提交、受影响引用。
-- 已执行清理的引用及新提交 ID、内容差异核对结果、原有 hook 检查结果。
-- 本地对象扫描结果、远端引用核对结果、托管平台对象的实际访问状态。
+- Matching files, historical line numbers, introducing and removing commits, and affected refs.
+- Refs that were cleaned and their new commit IDs, content diff verification results, and original hook check results.
+- Local object scan results, remote ref verification results, and actual accessibility status of objects on the hosting platform.

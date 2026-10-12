@@ -1,51 +1,51 @@
 ---
 name: dt-writing-research-report
-description: 用户要求形成研究、分析或报告文档时使用本技能，用于创建或修订需要保存到 DEVONthink 的调研文档。
+description: Use this skill when the user asks for a research, analysis, or report document; it creates or revises research documents to be saved in DEVONthink.
 ---
 
-# 调研报告
+# Research Report
 
-负责调研文档和报告的编写、修订与保存。通过 DEVONthink MCP 读写记录，MCP 不可用时终止执行。
+Write, revise, and save research documents and reports. Read and write records through the DEVONthink MCP; if the MCP is unavailable, stop.
 
-## 内容规范
+## Content Rules
 
-本技能的交付产物为人类用户可读的调研报告。内容需要符合以下规范要求：
+The deliverable of this skill is a human-readable research report. Content must follow these rules:
 
-1. 报告需忠实呈现调研内容
-2. 禁止使用“一句话总结”、“心智地图建立”之类的营销术语。调研报告的目的是为用户决策提供信息参考，禁止擅自代替用户总结和决策。结论只根据已有调研信息给出，不允许使用保守陈述、免责陈述，例如“已有信息关注型号xx/版本xx，但不能说明xx结论适用于所有场景”
-3. 不允许罗列实验数据，不允许未经用户同意记录任何用户所在环境信息、绝对路径、泄漏用户源码目录等信息
-4. 交付格式默认使用 markdown。如果用户明确提及其他格式，则必须优先尊重用户的意见
-5. 使用二级标题区分调研报告的不同方面的内容
-6. 调研报告需要合理使用交叉引用，链接DEVONthink数据库的已有信息，并忠实记录调研来源
-7. 如果用户要求保留原始产物，则使用 dt-source-capture 技能保存原始来源
+1. The report must faithfully present the research findings.
+2. Do not use marketing phrases such as "one-sentence summary" or "building a mental map". The purpose of a research report is to inform the user's decisions; do not summarize or decide on the user's behalf. Draw conclusions only from the research information available, and do not use hedging or disclaimer statements, e.g. "the available information focuses on model xx / version xx, but does not show that conclusion xx applies to all scenarios".
+3. Do not dump raw experiment data, and without the user's consent do not record any information about the user's environment, absolute paths, or anything that leaks the user's source directories.
+4. Deliver in markdown by default. If the user explicitly mentions another format, that takes precedence.
+5. Use level-2 headings to separate the different aspects of the report.
+6. Use cross-references appropriately to link existing information in the DEVONthink database, and faithfully record research sources.
+7. If the user asks to keep the original materials, use the dt-source-capture skill to save the original sources.
 
-### 多媒体数据使用
+### Using Multimedia
 
-DEVONthink 支持多媒体内容，Markdown 支持 mermaid、MathJax 渲染，允许使用图片、流程图等方式充分表达。任何场合禁止出于任何理由，将图片或其他多媒体文件用 base64 的方式嵌入 Markdown 或 HTML 文件。图片按如下方式导入：
+DEVONthink supports multimedia content, and Markdown supports mermaid and MathJax rendering, so images, flowcharts, etc. may be used for full expression. Never, under any circumstances or for any reason, embed images or other media files into Markdown or HTML as base64. Import images as follows:
 
-1. 确定附件 subgroup：来源中用户提供了专门存放附件的 subgroup 则直接使用；否则使用用户提供的 group 所在数据库中的 `Assets` 或 `medias` group（首字母大小写均可）
-2. 把图片或其他附件导入该 subgroup，并获得完整 x-devonthink-item link
-3. 根据所使用的文档格式（md 或 html）完成图片插入
+1. Determine the attachment subgroup: if the source includes a subgroup the user designated for attachments, use it directly; otherwise use the `Assets` or `medias` group (first letter in either case) in the database containing the user-provided group.
+2. Import the image or other attachment into that subgroup and get its full x-devonthink-item link.
+3. Insert the image according to the document format in use (md or html).
 
-## 执行流程
+## Workflow
 
-1. 按照用户的要求，充分搜索互联网完成调研以及与用户的必要讨论。
-2. 形成报告大纲结构，提醒用户进行审核
-3. 根据用户反馈结果，进行补充调研，撰写调研报告，并按照“DEVONthink 写入来源守则”章节确定写入位置。
-4. 写入前，如果已有调研报告，读取并比对内容，向用户汇报差异，确认是否需要修改或者追加。如果用户已经明确要求修改或追加，则不允许反复索取用户决策。
-5. 按照已确定的方式完成写入，然后向用户汇报产物路径。
+1. Following the user's request, research thoroughly on the internet and hold any necessary discussion with the user.
+2. Draft the report outline and ask the user to review it.
+3. Based on the user's feedback, do supplementary research, write the report, and determine the write location according to the "DEVONthink Write Target Rules" section.
+4. Before writing, if a research report already exists, read it, compare contents, report the differences to the user, and confirm whether to modify or append. If the user has already explicitly asked to modify or append, do not repeatedly ask for a decision.
+5. Write in the agreed way, then report the output path to the user.
 
-## 产物要求
+## Output Requirements
 
-1. 允许为产物添加2到3个标签，优先使用DEVONthink内已有的标签，如果没有现成合适标签，允许新建。不允许将项目细节例如需求编号等信息作为标签。
+1. You may add 2 to 3 tags to the output, preferring existing DEVONthink tags; if no suitable tag exists, you may create new ones. Do not use project details such as requirement IDs as tags.
 
-## DEVONthink 写入来源守则
+## DEVONthink Write Target Rules
 
-按下列优先级从高到低，使用第一个提供了来源的条目，无需继续遍历；都没有提供则停下并询问用户：
+Check the following in order of priority, use the first one that provides a source, and stop there; if none provides one, stop and ask the user:
 
-1. 用户Prompt中直接提供的有效 DEVONthink URL 来源
-2. 当前会话历史中提及的有效来源
-3. 项目目录的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-4. 项目目录的 `AGENTS.md` 或 `CLAUDE.md`
-5. 系统提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md` 文档
-6. 系统全局 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md` 文档
+1. A valid DEVONthink URL given directly in the user's prompt
+2. A valid source mentioned in the current conversation history
+3. `AGENTS.*.md` or `CLAUDE.*.md` in the project directory, e.g. `AGENTS.env.md`, `AGENTS.local.md`
+4. `AGENTS.md` or `CLAUDE.md` in the project directory
+5. System-provided `~/.codex/AGENTS.*.md` or `~/.claude/CLAUDE.*.md`
+6. Global `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`

@@ -1,74 +1,74 @@
 ---
 name: dt-writing-project-documents
-description: 创建或修订需要保存到 DEVONthink 的项目文档。用户要求编写或更新需求澄清、设计文档、开发计划、复盘或实验结果记录时使用，支持 Markdown 和 HTML。
+description: Create or revise project documents to be saved in DEVONthink. Use when the user asks to write or update requirement clarifications, design documents, development plans, retrospectives, or experiment result records. Supports Markdown and HTML.
 ---
 
-# 项目文档录入
+# Project Document Writing
 
-负责项目文档的创建、修订与保存。通过 DEVONthink MCP 读写记录。
+Create, revise, and save project documents. Read and write records through the DEVONthink MCP.
 
-## 文档类型
+## Document Types
 
-- 需求澄清、设计、开发计划、开发过程记录、复盘，以及记录或整理实验结果，默认按项目工程状态文档处理。如实记录当前项目状态、已有实现、计划和过程信息，无需反复确认类型。
-- 面向外部发布的文档按正式发布文档处理，不得披露 Mock 接口实现、自动化测试等内部工程状态信息，仅保留面向受众的正式内容。
-- 若无法可靠判断文档类型，先向用户确认，再开始写作。
+- Requirement clarifications, designs, development plans, development process records, retrospectives, and records or summaries of experiment results are treated as project engineering-state documents by default. Faithfully record the current project state, existing implementation, plans, and process information without repeatedly confirming the type.
+- Documents for external publication are treated as formal release documents: do not disclose internal engineering-state information such as mock API implementations or automated tests; keep only formal content intended for the audience.
+- If the document type cannot be reliably determined, confirm with the user before writing.
 
-## 文档格式
+## Document Format
 
-Markdown 优先，用于需求澄清、设计文档、开发计划、交接文档、进度记录等。需要呈现实验数据或者用户明确要求时，使用 HTML。
+Prefer Markdown, used for requirement clarifications, design documents, development plans, handoff documents, progress records, etc. Use HTML when presenting experiment data or when the user explicitly asks for it.
 
-### 多媒体数据使用
+### Using Multimedia
 
-DEVONthink 支持多媒体内容，Markdown 支持 mermaid、MathJax 渲染，允许使用图片、流程图等方式充分表达。任何场合禁止出于任何理由，将图片或其他多媒体文件用 base64 的方式嵌入 Markdown 或 HTML 文件。图片按如下方式导入：
+DEVONthink supports multimedia content, and Markdown supports mermaid and MathJax rendering, so images, flowcharts, etc. may be used for full expression. Never, under any circumstances or for any reason, embed images or other media files into Markdown or HTML as base64. Import images as follows:
 
-1. 确定附件 subgroup：来源中用户提供了专门存放附件的 subgroup 则直接使用；否则使用用户提供的 group 所在数据库中的 `Assets` 或 `medias` group（首字母大小写均可）
-2. 把图片或其他附件导入该 subgroup，并获得完整 x-devonthink-item link
-3. 根据所使用的文档格式（md 或 html）完成图片插入
+1. Determine the attachment subgroup: if the source includes a subgroup the user designated for attachments, use it directly; otherwise use the `Assets` or `medias` group (first letter in either case) in the database containing the user-provided group.
+2. Import the image or other attachment into that subgroup and get its full x-devonthink-item link.
+3. Insert the image according to the document format in use (md or html).
 
-### HTML 使用要求
+### HTML Requirements
 
-1. 使用 `effective-html` 插件完成 HTML 页面的成稿，插件只负责成稿，最终保存位置和交付遵循本技能的 DEVONthink 执行流程；当前环境未提供该插件时，直接按本节要求编写 HTML。充分使用图表提升可读性，禁止为了 HTML 而 HTML，或先写 Markdown 再机械地转换成 HTML。
-2. HTML 中所有数学公式必须正确渲染。
-3. 交付产物必须为可直接在浏览器打开的单 HTML 文件。
-4. 不为生成 HTML 编写单元测试，不使用 Computer Use 或 Browser Use 做样式验证。调用插件时保留这些限制，不执行插件中的浏览器样式验证流程。
+1. Use the `effective-html` plugin to produce the final HTML page. The plugin only produces the page; final save location and delivery follow this skill's DEVONthink workflow. If the plugin is not available in the current environment, write the HTML directly following this section. Make full use of charts to improve readability; do not use HTML for its own sake, and do not write Markdown first and mechanically convert it to HTML.
+2. All math formulas in the HTML must render correctly.
+3. The deliverable must be a single HTML file that opens directly in a browser.
+4. Do not write unit tests for generated HTML, and do not use Computer Use or Browser Use for style verification. Keep these restrictions when invoking the plugin, and skip its browser style-verification flow.
 
-## 内容规范
+## Content Rules
 
-项目文档包括：需求澄清、设计文档、开发计划、复盘、实验结果记录文档。文档内容需要满足如下约束：
+Project documents include requirement clarifications, design documents, development plans, retrospectives, and experiment result records. Content must satisfy the following constraints:
 
-1. 除非用户明确要求，否则文档中不得记录包括但不限于“xx项测试已通过”、“新增xx个文件，xx个函数”等开发过程流水账
-2. 需要在文档开头记录日期信息，只需精确到日期，无需记录时分秒
-3. 规范使用交叉引用：允许使用DEVONthink的交叉引用特性来建立文档之间的链接关系
-4. 文档内容来自其他技能的输出结果或会话历史总结时，同样需要满足上述要求，但不能擅改文档的核心内容
-5. 每个需求的“需求澄清、设计文档、开发计划” 这三部分，默认放在一个文档中，使用二级标题进行区分。
-6. 内容必须忠实反映用户提供的信息和项目已有的客观事实，不得夸大，也不得遗漏已有实现。不擅自添加“适用边界”“实验边界”“未发现”“不能证明”等限定性表述，仅在用户明确要求或已有客观资料明确包含时记录；不使用“尚未进行 xxx 实验，无法说明 xxx”等免责声明，客观描述事实及对应结论。
-7. 默认使用简体中文，代码和术语保留英文。Markdown 正文每个段落保持单行，只在标题、列表、表格、代码块等结构需要处换行，不为控制显示宽度插入硬换行。
-8. 涉及文件路径时使用绝对路径；非本机环境需标明服务器IP信息。
+1. Unless the user explicitly asks, do not record development-process logs, including but not limited to "xx tests passed" or "added xx files, xx functions".
+2. Record the date at the beginning of the document, precise to the day only, without time of day.
+3. Use cross-references properly: DEVONthink's cross-reference feature may be used to link documents to each other.
+4. When content comes from another skill's output or a summary of conversation history, it must still satisfy these requirements, but do not alter the document's core content.
+5. For each requirement, the "requirement clarification, design document, development plan" sections go in one document by default, separated by level-2 headings.
+6. Content must faithfully reflect user-provided information and objective facts about the project, without exaggeration and without omitting existing implementation. Do not add qualifiers such as "scope of applicability", "experimental limits", "not found", or "cannot prove" on your own; record them only when the user explicitly asks or existing objective materials explicitly contain them. Do not use disclaimers such as "xxx experiment has not been run, so xxx cannot be determined"; describe facts and their corresponding conclusions objectively.
+7. Write in the language the user commonly uses, keeping code and technical terms in English. Keep each Markdown body paragraph on a single line; break lines only where structures such as headings, lists, tables, and code blocks require it, and never insert hard line breaks to control display width.
+8. Use absolute paths when referring to file paths; for non-local environments, include the server IP.
 
-### 文档命名规范
+### Document Naming
 
-1. 项目文档使用需求编号作为开头，例如 `r001-project-init.md` 或 `r002-experiment-results.html`。需求编号严格递增，扩展名与所选格式一致。
-2. 文件名允许使用空格，但不能过长
+1. Project document names start with the requirement ID, e.g. `r001-project-init.md` or `r002-experiment-results.html`. Requirement IDs strictly increase, and the extension matches the chosen format.
+2. File names may contain spaces but must not be too long.
 
-## 执行流程
+## Workflow
 
-1. 根据本文件`DEVONthink 写入来源守则`章节，获取目标group信息。如果用户未提供任何group，停下并提醒用户。
-2. 如果用户只提供了项目 group，则首先在项目 group 下新建 docs 子 group，并提醒用户。已有 docs 则复用，无需重复创建。
-3. 按照文档类型、格式和内容规范完成成稿，通过 DEVONthink MCP 将所选格式的文档写入目标 group。
-4. 写入完毕后，汇报写入的文件清单，如果创建了 group 一并汇报。必须使用 markdown 链接的方式，显式告诉用户写入的文件地址和 x-devonthink-item，范例：`文档已写入：[Prefill P1 GPU0 GEMM 与 Chunk 验证](<DEVONthink 条目链接>)`。禁止任何静默写入。
-5. 如果 MCP 失败，停下并询问用户提供文档写入地址；不使用 Computer Use 等功能启动 MCP，也不擅自写入项目的 `docs` 目录。
+1. Get the target group according to the `DEVONthink Write Target Rules` section of this file. If the user has not provided any group, stop and tell the user.
+2. If the user provided only the project group, first create a `docs` subgroup under it and tell the user. If `docs` already exists, reuse it; do not create it again.
+3. Write the document according to the type, format, and content rules, then write it in the chosen format to the target group through the DEVONthink MCP.
+4. After writing, report the list of files written, plus any group created. You must use markdown links to explicitly tell the user each file's location and x-devonthink-item, e.g. `Document written: [Prefill P1 GPU0 GEMM and Chunk Validation](<DEVONthink item link>)`. Never write silently.
+5. If the MCP fails, stop and ask the user for a document write location; do not use Computer Use or similar features to start the MCP, and do not write to the project's `docs` directory on your own.
 
-## 产物要求
+## Output Requirements
 
-1. 除非用户明确要求，否则禁止擅自为文件或者group打标签
+1. Do not tag files or groups unless the user explicitly asks.
 
-## DEVONthink 写入来源守则
+## DEVONthink Write Target Rules
 
-按下列优先级从高到低，使用第一个提供了来源的条目，无需继续遍历；都没有提供则停下并询问用户：
+Check the following in order of priority, use the first one that provides a source, and stop there; if none provides one, stop and ask the user:
 
-1. 用户Prompt中直接提供的有效 DEVONthink URL 来源
-2. 当前会话历史中提及的有效来源
-3. 项目目录的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-4. 项目目录的 `AGENTS.md` 或 `CLAUDE.md`
-5. 系统提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md` 文档
-6. 系统全局 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md` 文档
+1. A valid DEVONthink URL given directly in the user's prompt
+2. A valid source mentioned in the current conversation history
+3. `AGENTS.*.md` or `CLAUDE.*.md` in the project directory, e.g. `AGENTS.env.md`, `AGENTS.local.md`
+4. `AGENTS.md` or `CLAUDE.md` in the project directory
+5. System-provided `~/.codex/AGENTS.*.md` or `~/.claude/CLAUDE.*.md`
+6. Global `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`

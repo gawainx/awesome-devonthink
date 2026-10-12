@@ -1,43 +1,43 @@
 ---
 name: dt-progress-recorder
-description: 完成需求开发并在用户验收通过后，在DEVONthink中记录项目进度。在完成需求、用户明确表示验收通过时使用。
+description: Record project progress in DEVONthink after a requirement has been implemented and the user has accepted it. Use when a requirement is complete and the user explicitly states acceptance.
 ---
 
-# 项目进度记录
+# Project Progress Recording
 
-负责在项目专属的`progress.md`文件记录需求完成结果。通过 DEVONthink MCP 读写记录，MCP 不可用时停下并告知用户。仅在用户验收通过后新增条目。
+Record completed requirements in the project's dedicated `progress.md` file. Read and write records through the DEVONthink MCP; if the MCP is unavailable, stop and tell the user. Add a new entry only after the user has accepted the work.
 
-## 内容规范
+## Content Rules
 
-项目进度记录使用单一 `progress.md` 文件记录需求开发情况和完成情况。内容满足如下规范：
+Project progress is recorded in a single `progress.md` file covering requirement development and completion. Content must follow these rules:
 
-1. 文件内容必须为一个一级列表，每个条目为一个需求的进度，且只允许一个段落，任何场合禁止在条目内使用换行
-2. 使用连续的文字内容记录需求信息以及用户关键决策
-3. 条目开头格式为`需求编号(<8位git hash>)`，例如 `- r001(asbdhxfs): 完成skills仓库初始化，用户明确要求使用 npx skills 标准安装方式进行安装`。其中，`<8位git hash>` 表示需求完成并提交更改之后的HEAD hash
+1. The file content must be a single top-level list. Each item is the progress of one requirement and may contain only one paragraph; never use line breaks inside an item under any circumstances.
+2. Record the requirement information and the user's key decisions as continuous prose.
+3. Each item starts with `<requirement-id>(<8-char git hash>)`, e.g. `- r001(asbdhxfs): Initialized the skills repository; the user explicitly required installation via the standard npx skills method`. `<8-char git hash>` is the HEAD hash after the requirement is completed and its changes are committed.
 
-### 禁止行为清单
+### Prohibited
 
-1. 禁止过度记录实现细节，例如“使用MainActor实现了xxx”
-2. 禁止记录“xxx项单元测试已通过”、“用户验收通过”这种流水帐信息
-3. 禁止修改已有条目的内容
+1. Do not over-record implementation details, e.g. "implemented xxx using MainActor".
+2. Do not record routine log information such as "xxx unit tests passed" or "user accepted".
+3. Do not modify existing entries.
 
-## 执行流程
+## Workflow
 
-1. 根据 `DEVONthink 写入来源守则` 获取目标文件，预期为单一 markdown 文件。如果存在多个文件，则提醒用户决策，不要使用任何“默认”地址静默写入
-2. 如果项目 group 存在，但未创建 `progress.md` 文件，则允许创建空文件，然后继续执行后续流程
-3. 读取已有内容的最后一行，获得历史需求编号最大值，并递增作为当前写入的需求编号; 如果是空文件，从 r001 开始。
-4. 完成追加写入：只允许写入到文件末尾，禁止写到文件开头、禁止改变已有内容的顺序
+1. Locate the target file according to the `DEVONthink Write Target Rules`; a single markdown file is expected. If multiple files exist, ask the user to decide; never silently write to any "default" location.
+2. If the project group exists but has no `progress.md` file, you may create an empty one and continue.
+3. Read the last line of the existing content to get the highest existing requirement ID, and increment it for the new entry; if the file is empty, start from r001.
+4. Append the entry: write only at the end of the file. Never write at the beginning of the file or reorder existing content.
 
-## 产物要求
+## Output Requirements
 
-1. 除非用户明确要求，否则禁止擅自为文件或者group打标签
+1. Do not tag files or groups unless the user explicitly asks.
 
-## DEVONthink 写入来源守则
+## DEVONthink Write Target Rules
 
-仅使用明确指定为当前项目进度记录文件或项目 group 的来源；其他文档链接不作为写入目标。按下列优先级从高到低，使用第一个提供了来源的条目，无需继续遍历；都没有提供则停下并询问用户：
+Use only sources explicitly designated as the current project's progress file or project group; other document links are not write targets. Check the following in order of priority, use the first one that provides a source, and stop there; if none provides one, stop and ask the user:
 
-1. 用户Prompt中直接提供的有效 DEVONthink URL 来源
-2. 项目目录的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-3. 项目目录的 `AGENTS.md` 或 `CLAUDE.md`
-4. 系统提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md` 文档
-5. 系统全局 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md` 文档
+1. A valid DEVONthink URL given directly in the user's prompt
+2. `AGENTS.*.md` or `CLAUDE.*.md` in the project directory, e.g. `AGENTS.env.md`, `AGENTS.local.md`
+3. `AGENTS.md` or `CLAUDE.md` in the project directory
+4. System-provided `~/.codex/AGENTS.*.md` or `~/.claude/CLAUDE.*.md`
+5. Global `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`

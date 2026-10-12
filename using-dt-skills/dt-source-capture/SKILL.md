@@ -1,36 +1,36 @@
 ---
 name: dt-source-capture
-description: 在用户明确要求保存原始素材（raw）、PDF 文件或网页时，将资料保存到 DEVONthink。普通调研、阅读或引用资料时不自动收集。
+description: Save materials to DEVONthink when the user explicitly asks to save raw materials, PDF files, or web pages. Do not capture automatically during ordinary research, reading, or citation.
 ---
 
-# 原始资料
+# Raw Sources
 
-负责 PDF 文件和 HTML 网页的收集与保存。通过 DEVONthink MCP 执行操作。
+Collect and save PDF files and HTML web pages. Perform operations through the DEVONthink MCP.
 
-## 内容规范
+## Content Rules
 
-1. 仅在用户要求保存原始素材时执行收集，范围以用户要求为准；用户明确指定其他保存格式或方式时，遵循用户要求。普通调研、阅读和引用不自动触发资料归档。
-2. PDF 保留原始文件，以 PDF 格式保存，不以提取文本或生成摘要代替原件。
-3. 网页默认保存为 HTML，保留完整页面，关闭正文提取。调用支持 `readability` 参数的网页捕获工具时，显式设置为 `false`，格式指定为 `html`。
+1. Capture only when the user asks to save raw materials, limited to the scope the user requested; if the user explicitly specifies another format or method, follow it. Ordinary research, reading, and citation never trigger archiving.
+2. Keep PDFs as the original file, saved in PDF format; never substitute extracted text or a summary for the original.
+3. Save web pages as HTML by default, keeping the full page with content extraction disabled. When calling a web capture tool that supports a `readability` parameter, explicitly set it to `false` and set the format to `html`.
 
-## 执行流程
+## Workflow
 
-1. 根据会话历史、agent执行历史，确定用户要求保存的 PDF 文件或网页 URL。务必注意，这一步不允许反复质问用户索取来源，而是根据历史调研结果来自动化决策。
-2. 按照本文件的“DEVONthink 写入来源守则”确定保存位置。
-3. 通过 MCP 导入 PDF 原始文件，或将网页捕获为完整 HTML。对于 PDF 下载链接，获取原始 PDF 后导入，不将下载页面当作 PDF 保存。网页 URL 或 PDF 来源链接已知时，保留来源信息，方便后续追溯。
-4. 检查保存结果是否为所需资料及格式，完成后返回实际保存记录的 Markdown item link。
+1. Determine the PDF files or web page URLs the user wants saved from the conversation history and agent execution history. Do not repeatedly ask the user for sources at this step; decide automatically based on prior research results.
+2. Determine the save location according to the "DEVONthink Write Target Rules" in this file.
+3. Import the original PDF file, or capture the web page as full HTML, through the MCP. For a PDF download link, fetch the actual PDF and import it; never save the download page as the PDF. When the web page URL or PDF source link is known, keep the source information for later traceability.
+4. Check that the saved result is the intended material in the intended format, then return the Markdown item link of the record actually saved.
 
-## DEVONthink 写入来源守则
+## DEVONthink Write Target Rules
 
-用户明确指定保存位置时，优先使用该位置。否则，按照下列来源优先级确定目标数据库，在其根目录下寻找 `raw-resources` group 作为保存位置。
+If the user explicitly specifies a save location, use it. Otherwise, determine the target database from the sources below in order of priority, and use the `raw-resources` group at the root of that database as the save location.
 
-来源中提供数据库链接时，使用该数据库；提供项目 group 或其他条目链接作为数据库定位依据时，通过 MCP 获取其所属数据库。直接使用链接中的对象标识定位，不按链接显示名称重新搜索。
+If a source provides a database link, use that database; if it provides a project group or another item link as a way to locate the database, get its database through the MCP. Locate objects directly by the identifier in the link; do not re-search by the link's display name.
 
-按优先级从高到低，使用第一个能确定目标数据库的来源，无需继续遍历。无法确定唯一目标数据库，或该数据库根目录下没有 `raw-resources` group 时，停下并询问用户，不自行创建或选择其他保存位置。
+Use the first source, in order of priority, that determines the target database, and stop there. If no unique target database can be determined, or the database root has no `raw-resources` group, stop and ask the user; do not create or choose another location yourself.
 
-1. 用户Prompt中直接提供的有效 DEVONthink URL 来源
-2. 当前会话历史中提及的有效来源
-3. 项目目录的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-4. 项目目录的 `AGENTS.md` 或 `CLAUDE.md`
-5. 系统提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md` 文档
-6. 系统全局 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md` 文档
+1. A valid DEVONthink URL given directly in the user's prompt
+2. A valid source mentioned in the current conversation history
+3. `AGENTS.*.md` or `CLAUDE.*.md` in the project directory, e.g. `AGENTS.env.md`, `AGENTS.local.md`
+4. `AGENTS.md` or `CLAUDE.md` in the project directory
+5. System-provided `~/.codex/AGENTS.*.md` or `~/.claude/CLAUDE.*.md`
+6. Global `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`
