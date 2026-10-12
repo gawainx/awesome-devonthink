@@ -1,6 +1,6 @@
 # awesome-devonthink
 
-[English](README.md) | 简体中文
+[English](README.md) | 简体中文 | [繁體中文](README.zh-TW.md)
 
 本项目记录和维护 DEVONthink 的使用指南，包括脚本和适合agent使用的skills
 
