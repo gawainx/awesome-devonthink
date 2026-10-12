@@ -54,4 +54,4 @@ A complete knowledge base should be searched and consulted as well as used for s
 
 ## Appearance Customization Scripts
 
-- [KaTeX support script](extended-scripts/katex-support/devonthink-katex.js): Load KaTeX for Markdown previews. See [Displaying Markdown Math in DEVONthink](tutorials/markdown-math.md) for instructions (in Simplified Chinese).
+- [KaTeX support script](extended-scripts/katex-support/devonthink-katex.js): Load KaTeX for Markdown previews. See [Displaying Markdown Math in DEVONthink](tutorials/markdown-math.md) for instructions.

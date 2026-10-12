@@ -54,4 +54,4 @@ DEVONThink MCP 支持对知识库内容进行读取、写入、修改等操作�
 
 ## 扩展美化脚本
 
-- [KaTeX 支持脚本](extended-scripts/katex-support/devonthink-katex.js)：为 Markdown 预览加载 KaTeX。使用教程参考 [在 DEVONthink 中显示 Markdown 数学公式](tutorials/markdown-math.md)
+- [KaTeX 支持脚本](extended-scripts/katex-support/devonthink-katex.js)：为 Markdown 预览加载 KaTeX。使用教程参考 [在 DEVONthink 中显示 Markdown 数学公式](tutorials/markdown-math.zh-CN.md)
