@@ -7,7 +7,7 @@ description: Save materials to DEVONthink when the user explicitly asks to save 
 
 Collect and save PDF files and HTML web pages. Perform operations through the DEVONthink MCP.
 
-**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.** This rule covers groups only: creating documents (files such as `.md` or `.html` records) inside an existing group is allowed.
+**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.**
 
 ## Content Rules
 

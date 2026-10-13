@@ -7,7 +7,7 @@ description: Use this skill when the user asks for a research, analysis, or repo
 
 Write, revise, and save research documents and reports. Read and write records through the DEVONthink MCP; if the MCP is unavailable, stop.
 
-**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.** This rule covers groups only: creating documents (files such as `.md` or `.html` records) inside an existing group is allowed, and so is creating tags as described in Output Requirements.
+**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.**
 
 ## Content Rules
 
