@@ -7,6 +7,8 @@ description: Record project progress in DEVONthink after a requirement has been 
 
 Record completed requirements in the project's dedicated `progress.md` file. Read and write records through the DEVONthink MCP; if the MCP is unavailable, stop and tell the user. Add a new entry only after the user has accepted the work.
 
+**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.**
+
 ## Content Rules
 
 Project progress is recorded in a single `progress.md` file covering requirement development and completion. Content must follow these rules:

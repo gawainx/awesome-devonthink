@@ -8,6 +8,7 @@
 ## Development Principles
 
 - Skills must be installable via `npx skills add`
+- Skills must never instruct agents to create any group or subgroup in DEVONthink; when a required group is missing, the agent must stop and ask the user
 
 ## Version Management
 

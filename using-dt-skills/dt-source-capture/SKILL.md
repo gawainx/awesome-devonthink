@@ -7,6 +7,8 @@ description: Save materials to DEVONthink when the user explicitly asks to save 
 
 Collect and save PDF files and HTML web pages. Perform operations through the DEVONthink MCP.
 
+**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.**
+
 ## Content Rules
 
 1. Capture only when the user asks to save raw materials, limited to the scope the user requested; if the user explicitly specifies another format or method, follow it. Ordinary research, reading, and citation never trigger archiving.

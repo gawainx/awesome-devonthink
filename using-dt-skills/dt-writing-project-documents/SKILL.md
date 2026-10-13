@@ -7,6 +7,8 @@ description: Create or revise project documents to be saved in DEVONthink. Use w
 
 Create, revise, and save project documents. Read and write records through the DEVONthink MCP.
 
+**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.**
+
 ## Document Types
 
 - Requirement clarifications, designs, development plans, development process records, retrospectives, and records or summaries of experiment results are treated as project engineering-state documents by default. Faithfully record the current project state, existing implementation, plans, and process information without repeatedly confirming the type.
@@ -21,7 +23,7 @@ Prefer Markdown, used for requirement clarifications, design documents, developm
 
 DEVONthink supports multimedia content, and Markdown supports mermaid and MathJax rendering, so images, flowcharts, etc. may be used for full expression. Never, under any circumstances or for any reason, embed images or other media files into Markdown or HTML as base64. Import images as follows:
 
-1. Determine the attachment subgroup: if the source includes a subgroup the user designated for attachments, use it directly; otherwise use the `Assets` or `medias` group (first letter in either case) in the database containing the user-provided group.
+1. Determine the attachment subgroup: if the source includes a subgroup the user designated for attachments, use it directly; otherwise use the `Assets` or `medias` group (first letter in either case) in the database containing the user-provided group. If none exists, stop and ask the user.
 2. Import the image or other attachment into that subgroup and get its full x-devonthink-item link.
 3. Insert the image according to the document format in use (md or html).
 
