@@ -53,9 +53,9 @@ Project documents include requirement clarifications, design documents, developm
 ## Workflow
 
 1. Get the target group according to the `DEVONthink Write Target Rules` section of this file. If the user has not provided any group, stop and tell the user.
-2. If the user provided only the project group, first create a `docs` subgroup under it and tell the user. If `docs` already exists, reuse it; do not create it again.
+2. If the user provided only the project group, write directly into that project group. Never create or use a `docs` subgroup.
 3. Write the document according to the type, format, and content rules, then write it in the chosen format to the target group through the DEVONthink MCP.
-4. After writing, report the list of files written, plus any group created. You must use markdown links to explicitly tell the user each file's location and x-devonthink-item, e.g. `Document written: [Prefill P1 GPU0 GEMM and Chunk Validation](<DEVONthink item link>)`. Never write silently.
+4. After writing, report the list of files written. You must use markdown links to explicitly tell the user each file's location and x-devonthink-item, e.g. `Document written: [Prefill P1 GPU0 GEMM and Chunk Validation](<DEVONthink item link>)`. Never write silently.
 5. If the MCP fails, stop and ask the user for a document write location; do not use Computer Use or similar features to start the MCP, and do not write to the project's `docs` directory on your own.
 
 ## Output Requirements
