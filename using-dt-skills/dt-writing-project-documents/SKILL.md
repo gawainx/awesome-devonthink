@@ -7,7 +7,7 @@ description: Create or revise project documents to be saved in DEVONthink. Use w
 
 Create, revise, and save project documents. Read and write records through the DEVONthink MCP.
 
-**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.**
+**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.** This rule covers groups only: creating documents (files such as `.md` or `.html` records) inside an existing group is allowed.
 
 ## Document Types
 
@@ -23,8 +23,8 @@ Prefer Markdown, used for requirement clarifications, design documents, developm
 
 DEVONthink supports multimedia content, and Markdown supports mermaid and MathJax rendering, so images, flowcharts, etc. may be used for full expression. Never, under any circumstances or for any reason, embed images or other media files into Markdown or HTML as base64. Import images as follows:
 
-1. Determine the attachment subgroup: if the source includes a subgroup the user designated for attachments, use it directly; otherwise use the `Assets` or `medias` group (first letter in either case) in the database containing the user-provided group. If none exists, stop and ask the user.
-2. Import the image or other attachment into that subgroup and get its full x-devonthink-item link.
+1. Find the existing attachment group: if the source includes a group the user designated for attachments, use it directly; otherwise use the existing `Assets` or `medias` group (first letter in either case) in the database containing the user-provided group. If none exists, stop and ask the user.
+2. Import the image or other attachment into that group and get its full x-devonthink-item link.
 3. Insert the image according to the document format in use (md or html).
 
 ### HTML Requirements
@@ -54,11 +54,11 @@ Project documents include requirement clarifications, design documents, developm
 
 ## Workflow
 
-1. Get the target group according to the `DEVONthink Write Target Rules` section of this file. If the user has not provided any group, stop and tell the user.
+1. Get the target group according to the `DEVONthink Write Target Rules` section of this file. If no source provides a target group, stop and tell the user.
 2. If the user provided only the project group, write directly into that project group. Never create or use a `docs` subgroup.
 3. Write the document according to the type, format, and content rules, then write it in the chosen format to the target group through the DEVONthink MCP.
 4. After writing, report the list of files written. You must use markdown links to explicitly tell the user each file's location and x-devonthink-item, e.g. `Document written: [Prefill P1 GPU0 GEMM and Chunk Validation](<DEVONthink item link>)`. Never write silently.
-5. If the MCP fails, stop and ask the user for a document write location; do not use Computer Use or similar features to start the MCP, and do not write to the project's `docs` directory on your own.
+5. If the MCP fails, stop and ask the user for a document write location; do not use Computer Use or similar features to start the MCP, and do not write to the code repository's local `docs/` folder on disk on your own.
 
 ## Output Requirements
 

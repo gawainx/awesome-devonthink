@@ -7,7 +7,7 @@ description: Use this skill when the user asks for a research, analysis, or repo
 
 Write, revise, and save research documents and reports. Read and write records through the DEVONthink MCP; if the MCP is unavailable, stop.
 
-**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.**
+**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.** This rule covers groups only: creating documents (files such as `.md` or `.html` records) inside an existing group is allowed, and so is creating tags as described in Output Requirements.
 
 ## Content Rules
 
@@ -25,8 +25,8 @@ The deliverable of this skill is a human-readable research report. Content must 
 
 DEVONthink supports multimedia content, and Markdown supports mermaid and MathJax rendering, so images, flowcharts, etc. may be used for full expression. Never, under any circumstances or for any reason, embed images or other media files into Markdown or HTML as base64. Import images as follows:
 
-1. Determine the attachment subgroup: if the source includes a subgroup the user designated for attachments, use it directly; otherwise use the `Assets` or `medias` group (first letter in either case) in the database containing the user-provided group. If none exists, stop and ask the user.
-2. Import the image or other attachment into that subgroup and get its full x-devonthink-item link.
+1. Find the existing attachment group: if the source includes a group the user designated for attachments, use it directly; otherwise use the existing `Assets` or `medias` group (first letter in either case) in the database containing the user-provided group. If none exists, stop and ask the user.
+2. Import the image or other attachment into that group and get its full x-devonthink-item link.
 3. Insert the image according to the document format in use (md or html).
 
 ## Workflow

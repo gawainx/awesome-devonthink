@@ -7,7 +7,7 @@ description: Record project progress in DEVONthink after a requirement has been 
 
 Record completed requirements in the project's dedicated `progress.md` file. Read and write records through the DEVONthink MCP; if the MCP is unavailable, stop and tell the user. Add a new entry only after the user has accepted the work.
 
-**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.**
+**Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.** This rule covers groups only: creating documents (files such as `.md` or `.html` records) inside an existing group is allowed.
 
 ## Content Rules
 
@@ -25,8 +25,8 @@ Project progress is recorded in a single `progress.md` file covering requirement
 
 ## Workflow
 
-1. Locate the target file according to the `DEVONthink Write Target Rules`; a single markdown file is expected. If multiple files exist, ask the user to decide; never silently write to any "default" location.
-2. If the project group exists but has no `progress.md` file, you may create an empty one and continue.
+1. Locate the target file according to the `DEVONthink Write Target Rules`; a single `progress.md` markdown file is expected. If multiple candidate progress files exist, ask the user to decide; never silently write to any "default" location.
+2. If the project group exists but has no `progress.md` file, you may create an empty `progress.md` document directly in that project group and continue. This creates a file, not a group.
 3. Read the last line of the existing content to get the highest existing requirement ID, and increment it for the new entry; if the file is empty, start from r001.
 4. Append the entry: write only at the end of the file. Never write at the beginning of the file or reorder existing content.
 
