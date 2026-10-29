@@ -49,8 +49,9 @@ Project documents include requirement clarifications, design documents, developm
 
 ### Document Naming
 
-1. Project document names start with the requirement ID, e.g. `r001 Project Init.md` or `r002 Experiment Results.html`. Requirement IDs strictly increase, and the extension matches the chosen format.
-2. Write names as readable titles with normal spaces; do not replace spaces with hyphens or underscores. Keep names reasonably short.
+1. Name the document from its subject, e.g. `Project Init.md` or `Experiment Results.html`. The extension matches the chosen format.
+2. Keep a requirement ID prefix when this file is an existing requirement document and that ID is already in its name, or the user has given the ID. Also add a requirement ID when the user asks to use requirement IDs. If the user asks for them but does not give a specific ID, use the next ID after the highest one already present in the target group; if none exist, start at `r001`. Do not generate a requirement ID unless one of these applies.
+3. Write names as readable titles with normal spaces; do not replace spaces with hyphens or underscores. Keep names reasonably short.
 
 ## Workflow
 
