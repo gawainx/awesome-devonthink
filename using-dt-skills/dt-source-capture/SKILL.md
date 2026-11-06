@@ -32,7 +32,7 @@ Use the first source, in order of priority, that determines the target database,
 
 1. A valid DEVONthink URL given directly in the user's prompt
 2. A valid source mentioned in the current conversation history
-3. `AGENTS.*.md` or `CLAUDE.*.md` in the project directory, e.g. `AGENTS.env.md`, `AGENTS.local.md`
-4. `AGENTS.md` or `CLAUDE.md` in the project directory
-5. System-provided `~/.codex/AGENTS.*.md` or `~/.claude/CLAUDE.*.md`
-6. Global `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`
+3. `AGENTS.*.md` or `CLAUDE.*.md` in the project directory, e.g. `AGENTS.env.md`, `AGENTS.local.md`, then `devonthink-target*.mdc` files whose names contain `.local.` under the project `.cursor/rules/`
+4. `AGENTS.md` or `CLAUDE.md` in the project directory, then the other `.mdc` files under the project `.cursor/rules/`
+5. System-provided `~/.codex/AGENTS.*.md` or `~/.claude/CLAUDE.*.md`, then `~/.cursor/rules/devonthink-target.local.mdc`
+6. Global `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`, then persistent `devonthink-*.mdc` files under `~/.cursor/rules/`. Cursor User Rules already injected into the context are at this same level

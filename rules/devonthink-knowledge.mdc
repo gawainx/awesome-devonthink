@@ -1,0 +1,6 @@
+---
+description: Treat the DEVONthink knowledge base as a regular information source
+alwaysApply: true
+---
+
+Treat the DEVONthink knowledge base, project source code, and online resources as regular information sources, and proactively retrieve relevant content for the task. When working on an existing project's requirements, design, or past decisions, first read the relevant knowledge base records, then form your conclusions using both the current source code and external sources.

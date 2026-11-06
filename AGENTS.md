@@ -4,10 +4,12 @@
 
 - `toolbar-scripts` contains AppleScript scripts for the DEVONthink toolbar
 - `using-dt-skills` contains DEVONthink skills for agents to use
+- `rules` contains Cursor rules distributed with `npx rulesx add`
 
 ## Development Principles
 
 - Skills must be installable via `npx skills add`
+- Cursor rules must live in the repository `rules/` directory so they can be installed with `npx rulesx add`
 - Skills must never instruct agents to create any group or subgroup in DEVONthink; when a required group is missing, the agent must stop and ask the user
 
 ## Version Management

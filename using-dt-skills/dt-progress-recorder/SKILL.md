@@ -39,7 +39,7 @@ Project progress is recorded in a single `progress.md` file covering requirement
 Use only sources explicitly designated as the current project's progress file or project group; other document links are not write targets. Check the following in order of priority, use the first one that provides a source, and stop there; if none provides one, stop and ask the user:
 
 1. A valid DEVONthink URL given directly in the user's prompt
-2. `AGENTS.*.md` or `CLAUDE.*.md` in the project directory, e.g. `AGENTS.env.md`, `AGENTS.local.md`
-3. `AGENTS.md` or `CLAUDE.md` in the project directory
-4. System-provided `~/.codex/AGENTS.*.md` or `~/.claude/CLAUDE.*.md`
-5. Global `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`
+2. `AGENTS.*.md` or `CLAUDE.*.md` in the project directory, e.g. `AGENTS.env.md`, `AGENTS.local.md`, then `devonthink-target*.mdc` files whose names contain `.local.` under the project `.cursor/rules/`
+3. `AGENTS.md` or `CLAUDE.md` in the project directory, then the other `.mdc` files under the project `.cursor/rules/`
+4. System-provided `~/.codex/AGENTS.*.md` or `~/.claude/CLAUDE.*.md`, then `~/.cursor/rules/devonthink-target.local.mdc`
+5. Global `~/.codex/AGENTS.md` or `~/.claude/CLAUDE.md`, then persistent `devonthink-*.mdc` files under `~/.cursor/rules/`. Cursor User Rules already injected into the context are at this same level

@@ -43,14 +43,46 @@ DEVONthink MCP 支援對知識庫內容進行讀取、寫入、修改等操作�
 
 1. 使用者 Prompt 中直接提供的有效 DEVONthink URL 來源
 2. 目前對話歷史中提及的有效來源
-3. 專案目錄中的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`
-4. 專案目錄中的 `AGENTS.md` 或 `CLAUDE.md`
-5. 系統提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md` 文件
-6. 系統全域的 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md` 文件
+3. 專案目錄中的 `AGENTS.*.md` 或 `CLAUDE.*.md`，例如 `AGENTS.env.md`、`AGENTS.local.md`，然後是專案 `.cursor/rules/` 中檔名包含 `.local.` 的 `devonthink-target*.mdc`
+4. 專案目錄中的 `AGENTS.md` 或 `CLAUDE.md`，然後是專案 `.cursor/rules/` 中的其餘 `.mdc`
+5. 系統提供的 `~/.codex/AGENTS.*.md` 或 `~/.claude/CLAUDE.*.md`，然後是 `~/.cursor/rules/devonthink-target.local.mdc`
+6. 系統全域的 `~/.codex/AGENTS.md` 或 `~/.claude/CLAUDE.md`，然後是 `~/.cursor/rules/` 中常駐的 `devonthink-*.mdc`。已經注入目前上下文的 Cursor User Rules 與這一級並列
 
-一個完整的知識庫除了用於儲存，還應該能被檢索和看見。因此，建議將下列指令貼到全域 AGENTS.md（或 CLAUDE.md）檔案中：
+隨規則分發的檔案裡不包含專案群組 URL。把這個 URL 寫進上面某一級的檔案，例如專案內的 `.cursor/rules/devonthink-target.mdc`，或對所有專案生效的 `~/.cursor/rules/devonthink-target.mdc`。
+
+一個完整的知識庫除了用於儲存，還應該能被檢索和看見。Claude 與 Codex 將下列指令貼到全域 AGENTS.md（或 CLAUDE.md）。Cursor 的同一條指令在下一節的 `devonthink-knowledge.mdc` 中。
 
 > 將 DEVONthink 知識庫、專案原始碼和網路資料作為常規資訊來源，根據任務主動檢索相關內容；涉及既有專案的需求、設計和歷史決策時，先讀取知識庫中的相關紀錄，並結合目前原始碼及外部資料做出判斷。
+
+## Cursor 規則 [rules](rules)
+
+給 Cursor 使用的 DEVONthink 常駐指令。
+
+| 規則 | 用途 |
+| --- | --- |
+| devonthink-knowledge | 將 DEVONthink 知識庫、專案原始碼和網路資料作為常規資訊來源 |
+| devonthink-groups | 不建立 DEVONthink 群組或子群組；所需群組不存在時停下來詢問使用者 |
+
+### 安裝與更新
+
+[rulesx](https://github.com/refinist/rulesx) 會把 `rules/*.mdc` 複製到目前工作目錄下的 `.cursor/rules/`。它沒有全域安裝參數，也不能選擇 git tag。更新時重新執行同一條指令。安裝時加上 `--rule 'devonthink-*'`，只取這些規則。互動選擇和 `--rule '*'` 還會把本儲存庫的 `AGENTS.md` 與 `CLAUDE.md` 複製到目標目錄。
+
+為所有專案安裝或更新時，先進入使用者主目錄。rulesx 依目前目錄寫入，檔案會落到 `~/.cursor/rules/`：
+
+```sh
+cd "$HOME"
+npx rulesx add https://github.com/gawainx/awesome-devonthink --rule 'devonthink-*'
+```
+
+只給一個專案安裝或更新時，在該專案根目錄執行上面的 `npx` 指令。檔案會落到該專案的 `.cursor/rules/`。
+
+需要固定版本時，先檢出對應 tag，再從該目錄安裝：
+
+```sh
+git clone --branch v1.1.0 --depth 1 https://github.com/gawainx/awesome-devonthink.git /tmp/awesome-devonthink
+cd "$HOME"
+npx rulesx add /tmp/awesome-devonthink --rule 'devonthink-*'
+```
 
 ## 擴充美化腳本
 

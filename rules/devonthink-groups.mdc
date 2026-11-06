@@ -1,0 +1,6 @@
+---
+description: Never create DEVONthink groups or subgroups
+alwaysApply: true
+---
+
+Never create any group or subgroup in DEVONthink, under any circumstances. If a required group does not exist, stop and ask the user.
